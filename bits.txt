@@ -1,0 +1,9 @@
+ffmpeg -f avfoundation -framerate 30 -i "1" -f mpeg1video -b 400k -r 30 -vf scale=640:480 http://sf-command-center.herokuapp.com:3001/secret/640/480
+
+ffmpeg -f avfoundation -framerate 30 -i "1" -f mpeg1video -b 400k -r 30 -vf scale=640:480 https://localhost:3001/secret/640/480
+
+ffmpeg -f avfoundation -framerate 30 -i "1" -f mpeg1video -b 400k -r 30 -vf scale=640:480 udp://sf-video-stream.herokuapp.com/stream?secret=secret
+
+ffmpeg -f avfoundation -framerate 30 -i "1" -f h264 -vcodec libx264 -r 30 -b 400k -r 30 -vf scale=640:480 https://sf-video-stream.herokuapp.com/stream?secret=secret
+
+lt --port 80

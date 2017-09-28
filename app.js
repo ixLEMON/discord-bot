@@ -1,17 +1,16 @@
+const config = require('./config.json');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const Input = require('node-microphone');
 let mic = new Input();
 
-const prefix = '!bot '
-
 client.on('ready', () => {
 	console.log('I am ready!');
 });
 
 client.on('message', msg => {
-	if(!msg.content.startsWith(prefix)){
+	if(!msg.content.startsWith(config.prefix)){
 		return;
 	}
 
@@ -28,7 +27,7 @@ client.on('message', msg => {
 		return;	
 	}
 
-	if (msg.content.startsWith(prefix + 'join')) {
+	if (msg.content.startsWith(config.prefix + 'join')) {
     	const voiceChannel = typeof msg.member.voiceChannel !== 'undefined' ? msg.member.voiceChannel : false;
 
     	if (!voiceChannel || voiceChannel.type !== 'voice') return msg.reply('I couldn\'t connect to your voice channel…');
@@ -39,7 +38,7 @@ client.on('message', msg => {
     	});
 	}
 
-	if (msg.content.startsWith(prefix + 'leave')) {
+	if (msg.content.startsWith(config.prefix + 'leave')) {
 		const voiceChannel = typeof msg.member.voiceChannel !== 'undefined' ? msg.member.voiceChannel : false;
 		if (!voiceChannel || voiceChannel.type !== 'voice') return msg.reply('I\'m not connected to any channels…');
 		mic.stopRecording();
@@ -50,4 +49,4 @@ client.on('message', msg => {
 
 // client.joinVoiceChannel()
 
-client.login('MzYyOTQyNTE1MTY0MzQ4NDE3.DK6C8w.pd6Es3Alla2YZdkl7BygTeZnXB4');
+client.login(config.token);

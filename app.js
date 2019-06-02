@@ -49,4 +49,4 @@ client.on('message', msg => {
 
 // client.joinVoiceChannel()
 
-client.login(config.token);
+client.login(TOKEN);
